@@ -1,0 +1,36 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Переменные окружения и секреты
+.env
+.env.*
+
+# Локальные базы данных
+*.db
+*.sqlite
+*.sqlite3
+
+# Настройки IDE
+.vscode/
+.idea/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+logs/
+
+# Сборка и пакеты
+dist/
+build/
+*.egg-info/
