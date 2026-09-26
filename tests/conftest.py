@@ -18,11 +18,13 @@ def app():
         После завершения теста удаляет SQLAlchemy-сессию
         и все таблицы тестовой базы данных.
     """
-    app = create_app({
-        "TESTING": True,
-        "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
-        "SQLALCHEMY_TRACK_MODIFICATIONS": False,
-    })
+    app = create_app(
+        {
+            "TESTING": True,
+            "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
+            "SQLALCHEMY_TRACK_MODIFICATIONS": False,
+        }
+    )
 
     with app.app_context():
         db.drop_all()

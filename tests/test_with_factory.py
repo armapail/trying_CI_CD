@@ -1,5 +1,8 @@
-from models import Client, Parking
+from typing import cast
+
 from factories import ClientFactory, ParkingFactory
+
+from models import Client, Parking
 
 
 def test_add_client(client, db_session) -> None:
@@ -17,19 +20,19 @@ def test_add_client(client, db_session) -> None:
         db_session: SQLAlchemy-сессия тестовой базы.
 
     """
-    user = ClientFactory()
+    user = cast(Client, ClientFactory())
     response = client.post(
-        '/clients',
+        "/clients",
         data={
             "name": user.name,
             "surname": user.surname,
             "credit_card": user.credit_card,
-            "car_number": user.car_number
-        }
+            "car_number": user.car_number,
+        },
     )
 
     assert response.status_code == 201
-    assert response.data == b'Ok'
+    assert response.data == b"Ok"
 
     assert user.id is not None
     assert len(db_session.query(Client).all()) == 2
@@ -47,15 +50,15 @@ def test_add_parking(client, db_session) -> None:
         db_session: SQLAlchemy-сессия тестовой базы.
 
     """
-    parking = ParkingFactory()
+    parking = cast(Parking, ParkingFactory())
     response = client.post(
-        '/parkings',
+        "/parkings",
         data={
             "address": parking.address,
             "opened": parking.opened,
             "count_places": parking.count_places,
-            "count_available_places": parking.count_available_places
-        }
+            "count_available_places": parking.count_available_places,
+        },
     )
 
     assert response.status_code == 201
